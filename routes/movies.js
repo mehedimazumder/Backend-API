@@ -5,8 +5,7 @@ const jwt = require('jsonwebtoken');
 router.get('/',verify,  (req, res)=>{
   jwt.verify(req.token, process.env.TOKEN_SECRET, (err) => {
             if(err){
-                console.log('ERROR: Could not connect to the protected route');
-                res.sendStatus(403);
+                res.status(403).send('Authentication Failed! You cannot get the movie details!');
             } else {
                 res.json({
                   title: 'Prestige',
